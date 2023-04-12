@@ -5,9 +5,10 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 let db;
-let dbName = process.env.dbName         // Name of the MongoDB Project
+let dbName = process.env.dbName; // Name of the MongoDB Project
 let connectionString = process.env.MONGO_URI;
 
+// Establishing database connection
 MongoClient.connect(connectionString, {
     useUnifiedTopology: true
 })
@@ -17,19 +18,36 @@ MongoClient.connect(connectionString, {
 })
 .catch(error => console.error(error))
 
+// Assigning the express method to a variable app.
 const app = express();
 
+// Telling the server that our template engine is going to be ejs
 app.set('view engine', 'ejs');
+
+// Accepting request data from client side forms
 app.use(express.urlencoded({ extended: true }))
+
+// Accepting all other request data other than client side forms
 app.use(express.json())
 
+// API for root (/) route. It eventually renders the index.ejs 
 app.get('/', (req, res) => {
     res.render('index.ejs')
 })
 
-app.post('/add-new-date', (req, res) => {
-
+// API for adding new data from admin-side
+app.post('/add-new-data', (req, res) => {
+    db.collection('days').insertOne({
+        dob: req.body.dob,
+        event: req.body.event
+    })
+    .then(result => {
+        console.log('Data added successfully!!');
+        res.redirect('/');
+    })
+    .catch(error => console.error(error));
 })
+
 
 app.post('/check-bday', (req, res) => {
     console.log(req.body)
