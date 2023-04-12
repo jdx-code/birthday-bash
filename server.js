@@ -45,12 +45,20 @@ app.post('/add-new-data', (req, res) => {
         console.log('Data added successfully!!');
         res.redirect('/');
     })
-    .catch(error => console.error(error));
+    .catch(err => console.error(err));
 })
 
 
 app.post('/check-bday', (req, res) => {
-    console.log(req.body)
+    const uname = req.body.uname;
+    const dob = req.body.dob;
+    db.collection('days').find().toArray()
+    .then(data =>{        
+        res.render('indexx.ejs', { info : data, username : uname } )
+        // res.json(`${uname} share your day with ${data.event}`);        
+        // res.json(data);
+    })
+    .catch(err => console.error(err));
 })
 
 app.get('/admin/add-data', (req, res) => {

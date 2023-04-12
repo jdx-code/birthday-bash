@@ -1,0 +1,9 @@
+<ul>
+    <p><%= username %> share your birthday with.. </p>    
+    <% for(let i=0; i<info.length; i++){ %>
+        <li>
+            <span><%= info[i].dob %></span>
+            <span><%= info[i].event %></span>  
+        </li>        
+    <% } %>
+</ul>    
