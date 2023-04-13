@@ -32,7 +32,7 @@ app.use(express.json())
 
 // API for root (/) route. It eventually renders the index.ejs 
 app.get('/', (req, res) => {
-    res.render('index.ejs')
+    res.sendFile(__dirname + '/index.html');
 })
 
 // API for adding new data from admin-side
