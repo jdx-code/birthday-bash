@@ -1,6 +1,7 @@
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 const dotenv = require('dotenv');
+const moment = require('moment');
 
 dotenv.config();
 
@@ -37,15 +38,19 @@ app.get('/', (req, res) => {
 
 // API for adding new data from admin-side
 app.post('/add-new-data', (req, res) => {
-    db.collection('days').insertOne({
-        dob: req.body.dob,
-        event: req.body.event
-    })
-    .then(result => {
-        console.log('Data added successfully!!');
-        res.redirect('/');
-    })
-    .catch(err => console.error(err));
+    let allowedDateFormats = ['DD MMM', 'DDMMM', 'DD MMMM', 'DDMMMM', 'DD-MMM', 'DD-MMMM', 'DD/MMM', 'DD/MMMM', 'DD-MM', 'DD/MM'];
+    let result = moment(req.body.dob, allowedDateFormats, true).isValid();
+    console.log(result)
+
+    // db.collection('days').insertOne({
+    //     dob: req.body.dob,
+    //     event: req.body.event
+    // })
+    // .then(result => {
+    //     console.log('Data added successfully!!');
+    //     res.redirect('/');
+    // })
+    // .catch(err => console.error(err));
 })
 
 
@@ -61,7 +66,7 @@ app.post('/check-bday', (req, res) => {
 })
 
 app.get('/admin/add-data', (req, res) => {
-    res.sendFile(__dirname + '/index.html')
+    res.sendFile(__dirname + '/admin/index.html')
 })
 
 app.listen(5000, () => {
