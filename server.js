@@ -40,17 +40,20 @@ app.get('/', (req, res) => {
 app.post('/add-new-data', (req, res) => {
     let allowedDateFormats = ['DD MMM', 'DDMMM', 'DD MMMM', 'DDMMMM', 'DD-MMM', 'DD-MMMM', 'DD/MMM', 'DD/MMMM', 'DD-MM', 'DD/MM'];
     let result = moment(req.body.dob, allowedDateFormats, true).isValid();
-    console.log(result)
-
-    // db.collection('days').insertOne({
-    //     dob: req.body.dob,
-    //     event: req.body.event
-    // })
-    // .then(result => {
-    //     console.log('Data added successfully!!');
-    //     res.redirect('/');
-    // })
-    // .catch(err => console.error(err));
+    
+    if(result){
+        db.collection('days').insertOne({
+            dob: req.body.dob,
+            event: req.body.event
+        })
+        .then(result => {
+            console.log('Data added successfully!!');
+            res.redirect('/');
+        })
+        .catch(err => console.error(err));
+    } else {
+        res.json('Wrong Input.. Please try again!')
+    }
 })
 
 
