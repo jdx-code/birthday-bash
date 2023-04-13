@@ -52,11 +52,10 @@ app.post('/add-new-data', (req, res) => {
 app.post('/check-bday', (req, res) => {
     const uname = req.body.uname;
     const dob = req.body.dob;
-    db.collection('days').find().toArray()
+    
+    db.collection('days').findOne({ 'dob': dob })
     .then(data =>{        
-        res.render('indexx.ejs', { info : data, username : uname } )
-        // res.json(`${uname} share your day with ${data.event}`);        
-        // res.json(data);
+        res.render('indexx.ejs', { info : data, username : uname } )        
     })
     .catch(err => console.error(err));
 })

@@ -1,9 +1,10 @@
 <ul>
+    <% if(!username || !info ) { %>
+        <p>Please pass correct input..</p>
+        <a href="index.ejs">Go back</a>
+    <% } else { %>
     <p><%= username %> share your birthday with.. </p>    
-    <% for(let i=0; i<info.length; i++){ %>
-        <li>
-            <span><%= info[i].dob %></span>
-            <span><%= info[i].event %></span>  
-        </li>        
+
+    <p><%= info.event %></p>
     <% } %>
 </ul>    
