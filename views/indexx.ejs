@@ -3,8 +3,9 @@
         <p>Please pass correct input..</p>
         <a href="/">Go back</a>
     <% } else { %>
-    <p><%= username %> share your birthday with.. </p>    
-
-    <p><%= info.event %></p>
+    <p><%= username %> share your birthday with.. </p>            
+        <p><%= typeof(info) %></p>
+        <% let myInfo = info.split(',') %>
+        <p><%= myInfo %></p>        
     <% } %>
 </ul>    
