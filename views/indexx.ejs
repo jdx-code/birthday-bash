@@ -1,11 +1,16 @@
 <ul>
-    <% if(!username || !info ) { %>
+    <% if(!info ) { %>
         <p>Please pass correct input..</p>
         <a href="/">Go back</a>
     <% } else { %>
-    <p><%= username %> share your birthday with.. </p>            
-        <p><%= typeof(info) %></p>
-        <% let myInfo = info.split(',') %>
-        <p><%= myInfo %></p>        
+        <% let infoArr = Object.values(info) %>       
+        <p>You share your birthday with..</p>
+        <ul>
+            <li><%= infoArr[2] %></li>
+        </ul>
+        <p>On this day..</p>
+        <ul>
+            <li><%= infoArr[3] %></li>
+        </ul>
     <% } %>
 </ul>    

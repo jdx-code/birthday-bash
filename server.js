@@ -39,17 +39,21 @@ app.get('/', (req, res) => {
 // API for adding new data from admin-side
 app.post('/add-new-data', (req, res) => {
 
-    let allowedDateFormats = ['DD MMM', 'DDMMM', 'DD MMMM', 'DDMMMM', 'DD-MMM', 'DD-MMMM', 'DD/MMM', 'DD/MMMM', 'DD-MM', 'DD/MM'];
-    let result = moment(req.body.dob, allowedDateFormats, true).isValid();
+    const month = req.body.month;
+    const day = req.body.day;
+
+    const dob = `${day}-${month}`;    
+
+    // let allowedDateFormats = ['DD MMM', 'DDMMM', 'DD MMMM', 'DDMMMM', 'DD-MMM', 'DD-MMMM', 'DD/MMM', 'DD/MMMM', 'DD-MM', 'DD/MM'];
+    let result = moment(dob, 'DD-MMMM', true).isValid();
 
     if(result){ 
         
-        db.collection('days').findOne({ 'dob': req.body.dob })
-        
+        db.collection('days').findOne({ 'dob': dob })        
         .then(checkResult => {
             if(!checkResult){
                 db.collection('days').insertOne({
-                    dob: req.body.dob,
+                    dob: dob,
                     personality: req.body.personality,
                     event: req.body.event
                 })
@@ -62,20 +66,22 @@ app.post('/add-new-data', (req, res) => {
             }  
         })
         .catch(err => console.error(err));  
-
         
     } else {
         res.json('Wrong Input.. Please try again!')
     }
 })
         
-app.post('/check-bday', (req, res) => {
-    const uname = req.body.uname;
-    const dob = req.body.dob;
+app.post('/check-bday', (req, res) => {    
+    const month = req.body.month;
+    const day = req.body.day;
+
+    const dob = `${day}-${month}`;
+    // res.json(`You selected ${month} ${day}`);
     
     db.collection('days').findOne({ 'dob': dob })
     .then(data =>{        
-        res.render('indexx.ejs', { info : data.event, username : uname } )        
+        res.render('indexx.ejs', { info : data } )        
     })
     .catch(err => console.error(err));
 })
