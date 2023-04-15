@@ -31,6 +31,9 @@ app.use(express.urlencoded({ extended: true }))
 // Accepting all other request data other than client side forms
 app.use(express.json())
 
+// Express automatically makes the route for the static files in the public directory
+app.use(express.static('public'));
+
 // API for root (/) route. It eventually renders the index.ejs 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
@@ -45,7 +48,7 @@ app.post('/add-new-data', (req, res) => {
     const dob = `${day}-${month}`;    
 
     // let allowedDateFormats = ['DD MMM', 'DDMMM', 'DD MMMM', 'DDMMMM', 'DD-MMM', 'DD-MMMM', 'DD/MMM', 'DD/MMMM', 'DD-MM', 'DD/MM'];
-    let result = moment(dob, 'DD-MMMM', true).isValid();
+    let result = moment(dob, 'D-MMMM', true).isValid();
 
     if(result){ 
         
