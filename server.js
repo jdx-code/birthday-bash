@@ -47,6 +47,11 @@ app.post('/add-new-data', (req, res) => {
 
     const dob = `${day}-${month}`;    
 
+    const personality = req.body.personality;
+    const profession = req.body.profession;
+
+    const personalityInfo = `${personality}, ${profession}`;
+
     // let allowedDateFormats = ['DD MMM', 'DDMMM', 'DD MMMM', 'DDMMMM', 'DD-MMM', 'DD-MMMM', 'DD/MMM', 'DD/MMMM', 'DD-MM', 'DD/MM'];
     let result = moment(dob, 'D-MMMM', true).isValid();
 
@@ -56,9 +61,9 @@ app.post('/add-new-data', (req, res) => {
         .then(checkResult => {
             if(!checkResult){
                 db.collection('days').insertOne({
-                    dob: dob,
-                    personality: req.body.personality,
-                    event: req.body.event
+                    dob: dob,                    
+                    event: req.body.event,
+                    personalityInfo: personalityInfo
                 })
                 .then(resultData => {
                     console.log('Data added successfully!!');
