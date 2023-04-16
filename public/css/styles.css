@@ -43,7 +43,8 @@ label{
 select{
     width: 100px;
     height: 30px;
-    border: 1px solid brown;
+    border-radius: 5px;
+    border: 2px solid orangered;
 }
 input[type="submit"]{
     display: block;
@@ -51,4 +52,23 @@ input[type="submit"]{
     margin: 0 auto;
     margin-top: 10px;
     border-radius: 5px;
+    border: 2px solid orangered;
 }
+
+/* Template view styles */
+.result{
+    width: 70%;
+    height: 95%;
+    border-radius: 5px;
+    border: 2px solid purple;
+}
+
+.result p{
+    font-size: 2rem;
+    margin-top: 25px;
+}
+
+.result li{
+    font-size: 2.2rem;
+}
+
