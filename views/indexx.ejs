@@ -1,16 +1,28 @@
-<ul>
-    <% if(!info ) { %>
-        <p>Please pass correct input..</p>
-        <a href="/">Go back</a>
-    <% } else { %>
-        <% let infoArr = Object.values(info) %>       
-        <p>You share your birthday with..</p>
-        <ul>
-            <li><%= infoArr[3] %></li>
-        </ul>
-        <p>On this day..</p>
-        <ul>
-            <li><%= infoArr[2] %></li>
-        </ul>
-    <% } %>
-</ul>    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <% if(!info ) { %>
+            <p>Please pass correct input..</p>
+            <a href="/">Go back</a>
+        <% } else { %>
+            <% let infoArr = Object.values(info) %>       
+            <p>You share your birthday with..</p>
+            <ul>
+                <li><%= infoArr[3] %></li>
+            </ul>
+            <p>On this day..</p>
+            <ul>
+                <li><%= infoArr[2] %></li>
+            </ul>
+        <% } %>
+    </ul>    
+</body>
+</html>

@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background-color: #FAACA8;
+    background-image: linear-gradient(50deg, #FAACA8 0%, #DDD6F3 100%);
+}
+
+h1{
+    font-size: 5rem;
+    font-family: 'Amatic SC', cursive;
+}
+
+h2{
+    font-size: 3rem;
+}
+
+div{   
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    justify-content: space-around;    
+    font-family: 'Dancing Script', cursive;
+}
+
+label{
+    font-family: 'Poppins', sans-serif;
+    margin: 8px;
+}
+
+select{
+    width: 100px;
+    height: 30px;
+    border: 1px solid brown;
+}
+input[type="submit"]{
+    display: block;
+    padding: 10px;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 5px;
+}

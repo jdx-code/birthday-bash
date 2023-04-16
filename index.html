@@ -4,28 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link rel="stylesheet" href="css/styles.css">
     <title>Document</title>    
 </head>
 <body>
-    <h1>This is ejs template</h1>
+    <div>
+        <h1>Birthday Bash</h1>
+        <h2>Get to know more about your special day..</h2>        
+        
+        <form action="/check-bday" method="post">        
+            <label>
+                Select Month
+            </label>
+            <select id="selectMonth" name="month">            
+                
+            </select>
+            <label>
+                Select Date
+            </label>        
+            <select id="selectDays" name="day">
+                        
+            </select>
+            <input type="submit"/>
+        </form>
 
-    <form action="/check-bday" method="post">        
-        <label>
-            Month
-        </label>
-        <select id="selectMonth" name="month">            
-            
-        </select>
-        <label>
-            Day
-        </label>        
-        <select id="selectDays" name="day">
-                       
-        </select>
-        <input type="submit"/>
-    </form>
-
+    </div>
+    
     <a href="/admin/add-data">Add new</a>   
     
     <script src="js/dateInputField.js"></script>
