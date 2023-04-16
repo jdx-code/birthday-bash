@@ -98,6 +98,28 @@ app.get('/admin/add-data', (req, res) => {
     res.sendFile(__dirname + '/admin/index.html')
 })
 
+app.get('/admin/view-all-records', (req, res) => {        
+    // res.json(`You selected ${month} ${day}`);
+    
+    db.collection('days').find().toArray()
+    .then(data =>{        
+        res.render('../admin/viewAllRecordsByAdmin.ejs', { info : data } )        
+    })
+    .catch(err => console.error(err));
+})
+
+app.delete('/delete-record', (req, res) => {
+    console.log(req);
+    db.collection('days').deleteOne({ dob: req.body.recordToBeDeleted })
+    .then(result => {
+        console.log('Record deleted')
+        res.json('Deleted');
+    })
+    .catch(err => {
+        console.log(`Error ${err}}`);
+    })
+})
+
 app.listen(5000, () => {
     console.log('Server listening on port 5000')
 })
